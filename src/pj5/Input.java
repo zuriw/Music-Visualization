@@ -12,6 +12,7 @@ import java.util.Comparator;
 public class Input
 {
 
+    @SuppressWarnings("unchecked")
     public static void main(String[] args)
     {
         LList<Student> sportsStudents = new LList<Student>();
@@ -22,6 +23,9 @@ public class Input
         MusicReader musicReader = null;
         CompareGenre genreComparator = new CompareGenre();
         CompareTitle titleComparator = new CompareTitle();
+        CompareArtist artistComparator = new CompareArtist();
+        CompareYear yearComparator = new CompareYear();
+        GUIGlyph gui = new GUIGlyph();
         try
         {
             surveyReader = new SurveyReader("MusicSurveyData.csv");
@@ -153,10 +157,16 @@ public class Input
         }
         
         
-        songs.insertSort(genreComparator);
-        System.out.println(songs);
+//        songs.insertSort(genreComparator);
+//        System.out.println(songs);
+//        
+//        songs.insertSort(titleComparator);
+//        System.out.println(songs);
+//        
+//        songs.insertSort(artistComparator);
+//        System.out.println(songs);
         
-        songs.insertSort(titleComparator);
+        songs.insertSort(yearComparator);
         System.out.println(songs);
 
     }
