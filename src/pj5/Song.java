@@ -1,10 +1,11 @@
-/**
- * 
- */
 package pj5;
 
 /**
- * @author zuriw
+ * This class creates a Song object which contains the Title Artist Year and
+ * Genre compiled by their Hobbies Majors and
+ * 
+ * @author zuriw,usmana
+ * @version 11/30/2016
  */
 public class Song
 {
@@ -13,25 +14,121 @@ public class Song
     private int    year;
     private String genre;
 
-    
-  //Hobbies
-    private int              pertsportsHeard;
-    private int              pertsportsLike;
-    private int              pertreadingHeard;
-    private int              pertreadingLike;
-    private int              pertartHeard;
-    private int              pertartLike;
-    private int              pertmusicHeard;
-    private int              pertmusicLike;
-    
-    //Majors
-    private int              pertCsHeard;
-    private int              pertCsLike;
-    private int              pertCmdaHeard;
-    private int              pertCmdaLike;
-    private int              pertOtherEngHeard;
-    private int              pertOtherEngLike;
+    // Hobbies
+    private int    pertsportsHeard;
+    private int    pertsportsLike;
+    private int    pertreadingHeard;
+    private int    pertreadingLike;
+    private int    pertartHeard;
+    private int    pertartLike;
+    private int    pertmusicHeard;
+    private int    pertmusicLike;
+
+    // Majors
+    private int    pertCsHeard;
+    private int    pertCsLike;
+    private int    pertCmdaHeard;
+    private int    pertCmdaLike;
+    private int    pertOtherEngHeard;
+    private int    pertOtherEngLike;
+    private int    pertOtherHeard;
+    private int    pertOtherLike;
+
+    // Regions
+    private int    pertNeHeard;
+    private int    pertNeLike;
+    private int    pertSeHeard;
+    private int    pertSeLike;
+    private int    pertUsHeard;
+    private int    pertUsLike;
+    private int    pertOutsideUsHeard;
+    private int    pertOutsideUsLike;
+
+
     /**
+     * @param Title
+     *            of the Song
+     * @param Year
+     *            of the Song
+     * @param Genre
+     *            of the Song
+     * @param Artist
+     *            of the Song
+     */
+    public Song(String title, String artist, int year, String genre)
+    {
+        this.title = title;
+
+        this.artist = artist;
+        this.year = year;
+        this.genre = genre;
+    }
+
+
+    /**
+     * gets the Title of the Song
+     * 
+     * @return the title of the Song
+     */
+    public String getTitle()
+    {
+        return title;
+    }
+
+
+    /**
+     * gets the Artist of the Song
+     * 
+     * @return the Artist of the Song
+     */
+    public String getArtist()
+    {
+        return artist;
+    }
+
+
+    /**
+     * gets the Year of the Song
+     * 
+     * @return the Year of the Song
+     */
+    public int getYear()
+    {
+        return year;
+    }
+
+
+    /**
+     * gets the Genre of the Song
+     * 
+     * @return the Genre of the Song
+     */
+    public String getGenre()
+    {
+        return genre;
+    }
+
+
+    /**
+     * Creates and returns a String representation of a Song
+     * 
+     * @return the Song in a String format Song Title: Song Artist: Song Genre:
+     *         Song Year:
+     */
+    public String toString()
+    {
+        StringBuilder s = new StringBuilder();
+        s.append("\nSong Title: " + this.getTitle() + "\n");
+        s.append("Song Artist: " + this.getArtist() + "\n");
+        s.append("Song Genre: " + this.getGenre() + "\n");
+        s.append("Song Year: " + this.getYear() + "\n");
+        return s.toString();
+    }
+
+
+    /**
+     * gets the percentage of sports Heard
+     * 
      * @return the pertsportsHeard
      */
     public int getPertsportsHeard()
@@ -41,7 +138,10 @@ public class Song
 
 
     /**
-     * @param pertsportsHeard the pertsportsHeard to set
+     * sets the percentage of sports Heard
+     * 
+     * @param pertsportsHeard
+     *            the pertsportsHeard to set
      */
     public void setPertsportsHeard(int pertsportsHeard)
     {
@@ -50,6 +150,8 @@ public class Song
 
 
     /**
+     * gets the percentage of sports Like
+     * 
      * @return the pertsportsLike
      */
     public int getPertsportsLike()
@@ -59,7 +161,10 @@ public class Song
 
 
     /**
-     * @param pertsportsLike the pertsportsLike to set
+     * sets the percentage of sports Like
+     * 
+     * @param pertsportsLike
+     *            the pertsportsLike to set
      */
     public void setPertsportsLike(int pertsportsLike)
     {
@@ -68,6 +173,8 @@ public class Song
 
 
     /**
+     * gets the percentage of reading Heard
+     * 
      * @return the pertreadingHeard
      */
     public int getPertreadingHeard()
@@ -77,7 +184,10 @@ public class Song
 
 
     /**
-     * @param pertreadingHeard the pertreadingHeard to set
+     * sets the percentage of reading Heard
+     * 
+     * @param pertreadingHeard
+     *            the pertreadingHeard to set
      */
     public void setPertreadingHeard(int pertreadingHeard)
     {
@@ -86,6 +196,8 @@ public class Song
 
 
     /**
+     * sets the percentage of reading Like
+     * 
      * @return the pertreadingLike
      */
     public int getPertreadingLike()
@@ -95,7 +207,10 @@ public class Song
 
 
     /**
-     * @param pertreadingLike the pertreadingLike to set
+     * sets the percentage of reading Like
+     * 
+     * @param pertreadingLike
+     *            the pertreadingLike to set
      */
     public void setPertreadingLike(int pertreadingLike)
     {
@@ -104,6 +219,8 @@ public class Song
 
 
     /**
+     * gets the percentage of art Heard
+     * 
      * @return the pertartHeard
      */
     public int getPertartHeard()
@@ -113,7 +230,10 @@ public class Song
 
 
     /**
-     * @param pertartHeard the pertartHeard to set
+     * sets the percentage of art Heard
+     * 
+     * @param pertartHeard
+     *            the pertartHeard to set
      */
     public void setPertartHeard(int pertartHeard)
     {
@@ -122,6 +242,8 @@ public class Song
 
 
     /**
+     * gets the percentage of art Like
+     * 
      * @return the pertartLike
      */
     public int getPertartLike()
@@ -131,7 +253,10 @@ public class Song
 
 
     /**
-     * @param pertartLike the pertartLike to set
+     * sets the percentage of art Like
+     * 
+     * @param pertartLike
+     *            the pertartLike to set
      */
     public void setPertartLike(int pertartLike)
     {
@@ -140,6 +265,8 @@ public class Song
 
 
     /**
+     * gets the percentage of music Heard
+     * 
      * @return the pertmusicHeard
      */
     public int getPertmusicHeard()
@@ -149,7 +276,10 @@ public class Song
 
 
     /**
-     * @param pertmusicHeard the pertmusicHeard to set
+     * sets the percentage of music Heard
+     * 
+     * @param pertmusicHeard
+     *            the pertmusicHeard to set
      */
     public void setPertmusicHeard(int pertmusicHeard)
     {
@@ -158,6 +288,8 @@ public class Song
 
 
     /**
+     * gets the percentage of music Like
+     * 
      * @return the pertmusicLike
      */
     public int getPertmusicLike()
@@ -167,7 +299,10 @@ public class Song
 
 
     /**
-     * @param pertmusicLike the pertmusicLike to set
+     * sets the percentage of music Like
+     * 
+     * @param pertmusicLike
+     *            the pertmusicLike to set
      */
     public void setPertmusicLike(int pertmusicLike)
     {
@@ -176,6 +311,8 @@ public class Song
 
 
     /**
+     * gets the percentage of CS Heard
+     * 
      * @return the pertCsHeard
      */
     public int getPertCsHeard()
@@ -185,7 +322,10 @@ public class Song
 
 
     /**
-     * @param pertCsHeard the pertCsHeard to set
+     * sets the percentage of CS Heard
+     * 
+     * @param pertCsHeard
+     *            the pertCsHeard to set
      */
     public void setPertCsHeard(int pertCsHeard)
     {
@@ -194,6 +334,8 @@ public class Song
 
 
     /**
+     * gets the percentage of CS Like
+     * 
      * @return the pertCsLike
      */
     public int getPertCsLike()
@@ -203,7 +345,10 @@ public class Song
 
 
     /**
-     * @param pertCsLike the pertCsLike to set
+     * sets the percentage of CS Like
+     * 
+     * @param pertCsLike
+     *            the pertCsLike to set
      */
     public void setPertCsLike(int pertCsLike)
     {
@@ -212,6 +357,8 @@ public class Song
 
 
     /**
+     * gets the percentage of Cmda Heard
+     * 
      * @return the pertCmdaHeard
      */
     public int getPertCmdaHeard()
@@ -221,7 +368,10 @@ public class Song
 
 
     /**
-     * @param pertCmdaHeard the pertCmdaHeard to set
+     * set the percentage of Cmda Heard
+     * 
+     * @param pertCmdaHeard
+     *            the pertCmdaHeard to set
      */
     public void setPertCmdaHeard(int pertCmdaHeard)
     {
@@ -230,6 +380,8 @@ public class Song
 
 
     /**
+     * get the percentage of Cmda Like
+     * 
      * @return the pertCmdaLike
      */
     public int getPertCmdaLike()
@@ -239,7 +391,10 @@ public class Song
 
 
     /**
-     * @param pertCmdaLike the pertCmdaLike to set
+     * sets the percentage of Cmda Like
+     * 
+     * @param pertCmdaLike
+     *            the pertCmdaLike to set
      */
     public void setPertCmdaLike(int pertCmdaLike)
     {
@@ -248,6 +403,8 @@ public class Song
 
 
     /**
+     * gets the percentage of OtherEng Heard
+     * 
      * @return the pertOtherEngHeard
      */
     public int getPertOtherEngHeard()
@@ -257,7 +414,10 @@ public class Song
 
 
     /**
-     * @param pertOtherEngHeard the pertOtherEngHeard to set
+     * sets the percentage of OtherEng Like
+     * 
+     * @param pertOtherEngHeard
+     *            the pertOtherEngHeard to set
      */
     public void setPertOtherEngHeard(int pertOtherEngHeard)
     {
@@ -266,6 +426,8 @@ public class Song
 
 
     /**
+     * gets the percentage of OtherEng Like
+     * 
      * @return the pertOtherEngLike
      */
     public int getPertOtherEngLike()
@@ -275,7 +437,10 @@ public class Song
 
 
     /**
-     * @param pertOtherEngLike the pertOtherEngLike to set
+     * sets the percentage of OtherEng Like
+     * 
+     * @param pertOtherEngLike
+     *            the pertOtherEngLike to set
      */
     public void setPertOtherEngLike(int pertOtherEngLike)
     {
@@ -284,6 +449,8 @@ public class Song
 
 
     /**
+     * gets the percentage of Other Heard
+     * 
      * @return the pertOtherHeard
      */
     public int getPertOtherHeard()
@@ -293,7 +460,10 @@ public class Song
 
 
     /**
-     * @param pertOtherHeard the pertOtherHeard to set
+     * sets the percentage of Other Heard
+     * 
+     * @param pertOtherHeard
+     *            the pertOtherHeard to set
      */
     public void setPertOtherHeard(int pertOtherHeard)
     {
@@ -302,6 +472,8 @@ public class Song
 
 
     /**
+     * gets the percentage of Other Like
+     * 
      * @return the pertOtherLike
      */
     public int getPertOtherLike()
@@ -311,7 +483,10 @@ public class Song
 
 
     /**
-     * @param pertOtherLike the pertOtherLike to set
+     * sets the percentage of Other Like
+     * 
+     * @param pertOtherLike
+     *            the pertOtherLike to set
      */
     public void setPertOtherLike(int pertOtherLike)
     {
@@ -320,6 +495,8 @@ public class Song
 
 
     /**
+     * gets the percentage of NE Heard
+     * 
      * @return the pertNeHeard
      */
     public int getPertNeHeard()
@@ -329,7 +506,10 @@ public class Song
 
 
     /**
-     * @param pertNeHeard the pertNeHeard to set
+     * sets the percentage of NE Heard
+     * 
+     * @param pertNeHeard
+     *            the pertNeHeard to set
      */
     public void setPertNeHeard(int pertNeHeard)
     {
@@ -338,6 +518,8 @@ public class Song
 
 
     /**
+     * gets the percentage of NE Like
+     * 
      * @return the pertNeLike
      */
     public int getPertNeLike()
@@ -347,7 +529,10 @@ public class Song
 
 
     /**
-     * @param pertNeLike the pertNeLike to set
+     * sets the percentage of NE Like
+     * 
+     * @param pertNeLike
+     *            the pertNeLike to set
      */
     public void setPertNeLike(int pertNeLike)
     {
@@ -356,6 +541,8 @@ public class Song
 
 
     /**
+     * gets the percentage of SE Heard
+     * 
      * @return the pertSeHeard
      */
     public int getPertSeHeard()
@@ -365,7 +552,10 @@ public class Song
 
 
     /**
-     * @param pertSeHeard the pertSeHeard to set
+     * sets the percentage of SE Heard
+     * 
+     * @param pertSeHeard
+     *            the pertSeHeard to set
      */
     public void setPertSeHeard(int pertSeHeard)
     {
@@ -374,6 +564,8 @@ public class Song
 
 
     /**
+     * gets the percentage of SE Like
+     * 
      * @return the pertSeLike
      */
     public int getPertSeLike()
@@ -383,7 +575,10 @@ public class Song
 
 
     /**
-     * @param pertSeLike the pertSeLike to set
+     * sets the percentage of SE Like
+     * 
+     * @param pertSeLike
+     *            the pertSeLike to set
      */
     public void setPertSeLike(int pertSeLike)
     {
@@ -392,6 +587,8 @@ public class Song
 
 
     /**
+     * gets the percentage of US Heard
+     * 
      * @return the pertUsHeard
      */
     public int getPertUsHeard()
@@ -401,7 +598,10 @@ public class Song
 
 
     /**
-     * @param pertUsHeard the pertUsHeard to set
+     * sets the percentage of US Heard
+     * 
+     * @param pertUsHeard
+     *            the pertUsHeard to set
      */
     public void setPertUsHeard(int pertUsHeard)
     {
@@ -410,6 +610,8 @@ public class Song
 
 
     /**
+     * gets the percentage of US Like
+     * 
      * @return the pertUsLike
      */
     public int getPertUsLike()
@@ -419,7 +621,10 @@ public class Song
 
 
     /**
-     * @param pertUsLike the pertUsLike to set
+     * sets the percentage of US Like
+     * 
+     * @param pertUsLike
+     *            the pertUsLike to set
      */
     public void setPertUsLike(int pertUsLike)
     {
@@ -428,6 +633,8 @@ public class Song
 
 
     /**
+     * gets the percentage of OutsideUS Heard
+     * 
      * @return the pertOutsideUsHeard
      */
     public int getPertOutsideUsHeard()
@@ -437,7 +644,10 @@ public class Song
 
 
     /**
-     * @param pertOutsideUsHeard the pertOutsideUsHeard to set
+     * sets the percentage of OutSideUS Heard
+     * 
+     * @param pertOutsideUsHeard
+     *            the pertOutsideUsHeard to set
      */
     public void setPertOutsideUsHeard(int pertOutsideUsHeard)
     {
@@ -446,6 +656,8 @@ public class Song
 
 
     /**
+     * gets the percentage of OutSideUS Like
+     * 
      * @return the pertOutsideUsLike
      */
     public int getPertOutsideUsLike()
@@ -455,90 +667,14 @@ public class Song
 
 
     /**
-     * @param pertOutsideUsLike the pertOutsideUsLike to set
+     * sets the percentage of OutsideUs Like
+     * 
+     * @param pertOutsideUsLike
+     *            the pertOutsideUsLike to set
      */
     public void setPertOutsideUsLike(int pertOutsideUsLike)
     {
         this.pertOutsideUsLike = pertOutsideUsLike;
     }
 
-    private int              pertOtherHeard;
-    private int              pertOtherLike;
-    
-    
-    //Regions
-    private int              pertNeHeard;
-    private int              pertNeLike;
-    private int              pertSeHeard;
-    private int              pertSeLike;
-    private int              pertUsHeard;
-    private int              pertUsLike;
-    private int              pertOutsideUsHeard;
-    private int              pertOutsideUsLike;
-
-    /**
-     * 
-     * @param Title
-     * @param Year
-     * @param Genre
-     * @param Artist
-     */
-    public Song(String title, String artist, int year, String genre)
-    {
-        this.title = title;
-        
-       
-        this.artist = artist;
-        this.year = year;
-        this.genre = genre;
-    }
-
-
-    /**
-     * @return
-     */
-    public String getTitle()
-    {
-        return title;
-    }
-
-
-    /**
-     * @return
-     */
-    public String getArtist()
-    {
-        return artist;
-    }
-
-    /**
-     * 
-     * @return
-     */
-    public int getYear()
-    {
-        return year;
-    }
-
-    /**
-     * 
-     * @return
-     */
-    public String getGenre()
-    {
-        return genre;
-    }
-
-    /**
-     *@return
-     */
-    public String toString()
-    {
-           StringBuilder s = new StringBuilder();
-           s.append("\nSong Title: " + this.getTitle() + "\n");          
-           s.append("Song Artist: " + this.getArtist() + "\n");           
-           s.append("Song Genre: " +this.getGenre() + "\n");
-           s.append("Song Year: " +this.getYear() + "\n");
-           return s.toString();
-    }
 }
