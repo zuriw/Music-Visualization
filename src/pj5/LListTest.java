@@ -1,27 +1,30 @@
-/**
- * 
- */
 package pj5;
+
 import java.util.Comparator;
 import student.TestCase;
+
 /**
- * @author zuriw
+ * @author zuriw,usmana
  * @version 2016.11.27
  */
 public class LListTest extends TestCase
 {
     private StringComparator strCompare;
-    private LList<String> str;
+    private LList<String>    str;
 
+
+    /**
+     * creates a LinkedList<String> and String COmparator Object for testing
+     */
     public void setUp()
     {
         strCompare = new StringComparator();
         str = new LList<String>();
     }
-    
+
+
     /**
-     * test method size to get the number of 
-     * elements in the list
+     * test method size to get the number of elements in the list
      */
     public void testgetLength()
     {
@@ -30,19 +33,16 @@ public class LListTest extends TestCase
         str.add("c");
         assertEquals(3, str.getLength());
     }
-    /**
-     * test method add at a certain location when the 
-     * list is empty
-     */
-    
+
+
     /**
      * test method add when the object is null
      */
     public void testAddNull()
     {
         String input1 = null;
-        
-        try 
+
+        try
         {
             str.add(input1);
         }
@@ -50,8 +50,10 @@ public class LListTest extends TestCase
         {
             assertTrue(e instanceof IllegalArgumentException);
         }
-        
+
     }
+
+
     /**
      * test method add when location is not specified
      */
@@ -61,6 +63,8 @@ public class LListTest extends TestCase
         str.add("b");
         assertEquals(2, str.getLength());
     }
+
+
     /**
      * test method isEmpty when the list is empty
      */
@@ -68,6 +72,8 @@ public class LListTest extends TestCase
     {
         assertTrue(str.isEmpty());
     }
+
+
     /**
      * test method isEmpty when the list is not empty
      */
@@ -77,10 +83,11 @@ public class LListTest extends TestCase
         str.add("b");
         assertFalse(str.isEmpty());
     }
+
+
     /**
-     * test method remove when an object is successfully
-     * removed; first node is not null, and first node equals to 
-     * object needed to be removed
+     * test method remove when an object is successfully removed; first node is
+     * not null, and first node equals to object needed to be removed
      */
     public void testRemoveFirstNodeT()
     {
@@ -94,18 +101,20 @@ public class LListTest extends TestCase
         assertFalse(str.contains("a"));
         assertEquals("{b, c}", str.toString());
     }
+
+
     /**
-     * test method remove when the the list is empty 
-     * so the first node is null
+     * test method remove when the the list is empty so the first node is null
      */
     public void testRemoveFirstNodeEmpty()
     {
         assertFalse(str.remove("a"));
     }
 
+
     /**
-     * test method remove when the list is greater than
-     * 2 and the object is found and removed
+     * test method remove when the list is greater than 2 and the object is
+     * found and removed
      */
     public void testRemove2nUpFoundRemoved()
     {
@@ -118,10 +127,11 @@ public class LListTest extends TestCase
         assertFalse(str.contains("c"));
         assertEquals(4, str.getLength());
     }
-    
+
+
     /**
-     * test method remove when the list is greater than 2 and the 
-     * the object is not found in the list
+     * test method remove when the list is greater than 2 and the the object is
+     * not found in the list
      */
     public void testRemove2NupNotFound()
     {
@@ -134,23 +144,10 @@ public class LListTest extends TestCase
         assertEquals(5, str.getLength());
         assertFalse(str.contains("f"));
     }
-//    /**
-//     * test method remove when the list is greater than 2 
-//     * and it is the last element in the list
-//     */
-//    public void testRemove2UpNull()
-//    {
-//        str.add("a");
-//        str.add("b");
-//        str.add("c");
-//        str.add("d");
-//        str.add("e");
-//        assertTrue(str.remove("e"));
-//        assertEquals(4, str.getLength());
-//    }
+
+
     /**
-     * test method remove when an object is Not 
-     * successfully removed
+     * test method remove when an object is Not successfully removed
      */
     public void testRemoveF()
     {
@@ -159,17 +156,19 @@ public class LListTest extends TestCase
         str.add("c");
         assertFalse(str.remove("d"));
         assertEquals(3, str.getLength());
-        
+
     }
+
+
     /**
-     * test method remove at a certain location when 
-     * there is no element at that index
+     * test method remove at a certain location when there is no element at that
+     * index
      */
     public void testRemoveIndNoEle()
     {
         str.add("a");
         str.add("b");
-        try 
+        try
         {
             str.remove(3);
         }
@@ -178,9 +177,10 @@ public class LListTest extends TestCase
             assertTrue(e instanceof IndexOutOfBoundsException);
         }
     }
+
+
     /**
-     * test method remove at a certain location when 
-     * the removal is successful
+     * test method remove at a certain location when the removal is successful
      */
     public void testRemoveIndT()
     {
@@ -190,13 +190,14 @@ public class LListTest extends TestCase
         assertEquals("a", str.remove(1));
         assertEquals(2, str.getLength());
     }
+
+
     /**
-     * test method get when there is no node at the 
-     * given index
+     * test method get when there is no node at the given index
      */
     public void testGetNoNode()
     {
-        try 
+        try
         {
             str.getEntry(0);
         }
@@ -205,12 +206,14 @@ public class LListTest extends TestCase
             assertTrue(e instanceof IndexOutOfBoundsException);
         }
     }
+
+
     /**
      * test method get when the index is less than zero
      */
     public void testGetIndLessThanZero()
     {
-        try 
+        try
         {
             str.getEntry(-1);
         }
@@ -219,6 +222,8 @@ public class LListTest extends TestCase
             assertTrue(e instanceof IndexOutOfBoundsException);
         }
     }
+
+
     /**
      * test method get when the index is greater than the size
      */
@@ -227,8 +232,8 @@ public class LListTest extends TestCase
         str.add("a");
         str.add("b");
         str.add("c");
-        
-        try 
+
+        try
         {
             str.getEntry(4);
         }
@@ -237,10 +242,10 @@ public class LListTest extends TestCase
             assertTrue(e instanceof IndexOutOfBoundsException);
         }
     }
-    
+
+
     /**
-     * test method get to return a specific object 
-     * at the given index
+     * test method get to return a specific object at the given index
      */
     public void testgetEntry()
     {
@@ -249,6 +254,8 @@ public class LListTest extends TestCase
         str.add("c");
         assertEquals("a", str.getEntry(1));
     }
+
+
     /**
      * test method contains when the object exists
      */
@@ -259,6 +266,8 @@ public class LListTest extends TestCase
         str.add("c");
         assertTrue(str.contains("a"));
     }
+
+
     /**
      * test method contains when the object does not exist
      */
@@ -269,6 +278,8 @@ public class LListTest extends TestCase
         str.add("c");
         assertFalse(str.contains("d"));
     }
+
+
     /**
      * test method clear
      */
@@ -282,6 +293,8 @@ public class LListTest extends TestCase
         assertTrue(str.isEmpty());
         assertEquals(0, str.getLength());
     }
+
+
     /**
      * test method clear when list is empty
      */
@@ -291,10 +304,11 @@ public class LListTest extends TestCase
         str.clear();
         assertEquals(0, str.getLength());
     }
-    
+
+
     /**
-     * test method toString that returns elements 
-     * in the list in "A, B, C" format
+     * test method toString that returns elements in the list in "A, B, C"
+     * format
      */
     public void testToString()
     {
@@ -304,11 +318,28 @@ public class LListTest extends TestCase
         str.insertSort(strCompare);
         assertEquals("{a, b, c}", str.toString());
     }
-    
-    
-    
+
+
+    /**
+     * This private class creates a StringComparator object to test the sorting
+     * abilites in the linked list
+     * 
+     * @author usmana
+     * @version 11/30/2016
+     */
     private class StringComparator implements Comparator<String>
     {
+        /**
+         * @param str1
+         *            is the first String
+         * @param str2
+         *            is the second String being compared to
+         * @return if the String lengths are not the same it will return the
+         *         differences in length otherwise it will return This method
+         *         returns a negative integer, zero, or a positive integer as
+         *         the specified String is greater than, equal to, or less than
+         *         this String, ignoring case considerations.
+         */
         public int compare(String str1, String str2)
         {
             if (str1.length() != str2.length())
