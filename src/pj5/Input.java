@@ -25,7 +25,7 @@ public class Input
         CompareTitle titleComparator = new CompareTitle();
         CompareArtist artistComparator = new CompareArtist();
         CompareYear yearComparator = new CompareYear();
-        GUIGlyph gui = new GUIGlyph();
+       
         try
         {
             surveyReader = new SurveyReader("MusicSurveyData.csv");
@@ -40,6 +40,8 @@ public class Input
 
         LList<Song> songs = musicReader.getSongs();
         LList<Student> allStudents = surveyReader.getStudents(songs);
+        GUI gui = new GUI(songs, allStudents);
+        //GUIGlyph gui2 = new GUIGlyph(songs, allStudents);
 
         // add all sports students in list
         for (int i = 1; i <= allStudents.getLength(); i++)
