@@ -2,7 +2,6 @@ package pj5;
 
 import java.util.Comparator;
 
-
 /**
  * A class that implements the ADT list by using a chain of linked nodes that
  * has a head reference.
@@ -17,18 +16,30 @@ public class LList<T>
     private int  numberOfEntries;
 
 
+    /**
+     * Default Constructor of LinkedList
+     */
     public LList()
     {
         initializeDataFields();
     } // end default constructor
 
 
+    /**
+     * clears the LinkedList
+     */
     public void clear()
     {
         initializeDataFields();
     } // end clear
 
 
+    /**
+     * adds a new item into the LinkedList
+     * 
+     * @param newEntry
+     *            the entry being added
+     */
     public void add(T newEntry) // OutOfMemoryError possible
     {
         Node newNode = new Node(newEntry);
@@ -45,9 +56,8 @@ public class LList<T>
     } // end add
 
 
-
     /**
-     * Removes the first instance of the given object from the list
+     * Removes the instance of the given object from the list
      *
      * @param obj
      *            the object to remove
@@ -89,6 +99,13 @@ public class LList<T>
     }
 
 
+    /**
+     * removes an object from the LinkedList
+     * 
+     * @param givenPosition
+     *            the entry at where the object to be removed is located
+     * @return the Object that was removed the LinkedList
+     */
     public T remove(int givenPosition)
     {
         T result = null; // Return value
@@ -120,6 +137,13 @@ public class LList<T>
     } // end remove
 
 
+    /**
+     * Gets the entry at the given position
+     * 
+     * @param givenPosition
+     *            the entry at where the object is located
+     * @return the Object located at the given position
+     */
     public T getEntry(int givenPosition)
     {
         if ((givenPosition >= 1) && (givenPosition <= numberOfEntries))
@@ -133,6 +157,12 @@ public class LList<T>
     } // end getEntry
 
 
+    /**
+     * Copies the entires in the LinkedList and puts them into an Array
+     * 
+     * @return an array of Objects that contains the same entries as the
+     *         LinkedList
+     */
     public T[] toArray()
     {
         // The cast is safe because the new array contains null entries
@@ -152,6 +182,14 @@ public class LList<T>
     } // end toArray
 
 
+    /**
+     * Checks to see if an entry is containted in the LinkedList
+     * 
+     * @param anEntry
+     *            the Object to be searched for in the LinkedList
+     * @return true if the entry is in the list else false if it is not in the
+     *         list
+     */
     public boolean contains(T anEntry)
     {
         boolean found = false;
@@ -169,7 +207,6 @@ public class LList<T>
     } // end contains
 
 
-    
     /**
      * Returns a string representation of the list If a list contains A, B, and
      * C, the following should be returned "{A, B, C}" (Without the quotations)
@@ -177,28 +214,41 @@ public class LList<T>
      * @return a string representing the list
      */
     @Override
-    public String toString() {
+    public String toString()
+    {
         String result = "{";
 
         Node current = firstNode;
-        while (current != null) {
+        while (current != null)
+        {
             result += "" + current.data;
             current = current.next;
-            if (current != null) {
+            if (current != null)
+            {
                 result += ", ";
             }
         }
         result += "}";
         return result;
     }
-    
-    
+
+
+    /**
+     * gets the amount of entries in the LinkedList
+     * 
+     * @return int the amount of entires in the LinkedList
+     */
     public int getLength()
     {
         return numberOfEntries;
     } // end getLength
 
 
+    /**
+     * checks to see if the LinkedList is Empty
+     * 
+     * @return true if LinkedList is empty false if it is not
+     */
     public boolean isEmpty()
     {
         boolean result;
@@ -218,7 +268,9 @@ public class LList<T>
     } // end isEmpty
 
 
-    // Initializes the class's data fields to indicate an empty list.
+    /**
+     * Initializes the class's data fields to indicate an empty list.
+     */
     private void initializeDataFields()
     {
         firstNode = null;
@@ -226,9 +278,15 @@ public class LList<T>
     } // end initializeDataFields
 
 
-    // Returns a reference to the node at a given position.
-    // Precondition: The chain is not empty;
-    // 1 <= givenPosition <= numberOfEntries.
+    /**
+     * gets a Node at the given position
+     * 
+     * @param givenPosition
+     *            the position where the Node is located / 1 <= givenPosition <=
+     *            numberOfEntries.
+     * @return a refrence to the Node at a given position while the LinkedList
+     *         is not empty
+     */
     private Node getNodeAt(int givenPosition)
     {
         assert !isEmpty() && (1 <= givenPosition)
@@ -246,6 +304,14 @@ public class LList<T>
     } // end getNodeAt
 
 
+    /**
+     * adds Nodes into the LinkedList in order
+     * 
+     * @param nodeToInsert
+     *            the Node being inserted into the LinkedList
+     * @param comparator
+     *            the type of comparator that is being used
+     */
     private void insertInOrder(
         Node nodeToInsert,
         Comparator<? super T> comparator)
@@ -274,6 +340,12 @@ public class LList<T>
     }
 
 
+    /**
+     * Sorts the LinkedList based on the type of comparator being used
+     * 
+     * @param comparator
+     *            the type of comparator being used to sort the LinkedList
+     */
     public void insertSort(Comparator<? super T> comparator)
     {
         if (getLength() > 1)
@@ -291,12 +363,25 @@ public class LList<T>
     }
 
 
+    /**
+     * This class creates a Node Object to be used in LinkedList Each Node
+     * contains Data and a Link to the next Node
+     * 
+     * @author usmana
+     * @version 11/30/2016
+     */
     private class Node
     {
         private T    data; // Entry in list
         private Node next; // Link to next node
 
 
+        /**
+         * Constructor for Node class with a data Item
+         * 
+         * @param dataPortion
+         *            the data contained in the Node
+         */
         private Node(T dataPortion)
         {
             data = dataPortion;
@@ -304,6 +389,15 @@ public class LList<T>
         } // end constructor
 
 
+        /**
+         * Constructor for Node class with a data Item and a Link to the next
+         * Node
+         * 
+         * @param dataPortion
+         *            the data contained in the Node
+         * @param nextNode
+         *            Link to the next Node
+         */
         private Node(T dataPortion, Node nextNode)
         {
             data = dataPortion;
@@ -311,24 +405,34 @@ public class LList<T>
         } // end constructor
 
 
+        /**
+         * gets the data in the Node
+         * 
+         * @return the data contained in the Node
+         */
         private T getData()
         {
             return data;
         } // end getData
 
 
-        private void setData(T newData)
-        {
-            data = newData;
-        } // end setData
-
-
+        /**
+         * gets the next Node
+         * 
+         * @return gets the Node that is pointed to
+         */
         private Node getNextNode()
         {
             return next;
         } // end getNextNode
 
 
+        /**
+         * sets the new refrences for the next Node
+         * 
+         * @param nextNode
+         *            the new Node that next refrences
+         */
         private void setNextNode(Node nextNode)
         {
             next = nextNode;
