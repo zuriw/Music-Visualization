@@ -24,12 +24,20 @@ public class GUI
     private LList<Song>      allSongs;
     private LList<Student>   allStudents;
     private int              firstSongIndex;
+
     private final static int disBetweenSongX = 70;
     private final static int disBetweenSongY = 70;
     private final static int pertBarHeight   = 5;
     private final static int blackBarHeight  = pertBarHeight * 4;
     private final static int blackBarWidth   = 2;
+
     private int              representNum;
+
+    private CompareGenre     genreComparator;
+    private CompareArtist    artistComparator;
+    private CompareTitle     titleComparator;
+    private CompareYear      yearComparator;
+
 
     public GUI(LList<Song> songsIn, LList<Student> studentsIn)
     {
@@ -52,7 +60,7 @@ public class GUI
         buttonPrevious.onClick(this, "clickedPrevious");
         buttonNext.onClick(this, "clickedNext");
         buttonSortArtist.onClick(this, "clickedSortByArtist");
-        buttonSortSongTitle.onClick(this, "clickedSortBySongTitle");
+        buttonSortSongTitle.onClick(this, "clickedSortByTitle");
         buttonSortYear.onClick(this, "clickedSortByYear");
         buttonSortGenre.onClick(this, "clickedSortByGenre");
 
@@ -70,18 +78,19 @@ public class GUI
         allSongs = songsIn;
         allStudents = studentsIn;
 
-        
+        genreComparator = new CompareGenre();
+        artistComparator = new CompareArtist();
+        titleComparator = new CompareTitle();
+        yearComparator = new CompareYear();
+
+        // representNum = 1 Hobby
+        // representNum = 2 Major
+        // representNum = 3 Region
         representNum = 1;
         getPercentage();
         firstSongIndex = 1;
         createNineCharts();
 
-        // representNum = 1 Hobby
-        // representNum = 2 Major
-        // representNum = 3 Region
-        
-
-        
     }
 
 
@@ -89,6 +98,7 @@ public class GUI
     {
         int titlex = 30;
         int titley = 15;
+
         for (int i = firstSongIndex; i < firstSongIndex + 9 && i <= allSongs
             .getLength(); i++)
         {
@@ -106,35 +116,98 @@ public class GUI
             int greenHeardWidth = 0;
             int blueHeardWidth = 0;
             int orangeHeardWidth = 0;
+
+            int pinkLikeWidth = 0;
+            int greenLikeWidth = 0;
+            int blueLikeWidth = 0;
+            int orangeLikeWidth = 0;
             switch (representNum)
             {
                 case 1:
-                    pinkHeardWidth = allSongs.getEntry(i).getPertsportsHeard() / 10;
-                    greenHeardWidth = allSongs.getEntry(i).getPertreadingHeard() / 10;
-                    blueHeardWidth = allSongs.getEntry(i).getPertartHeard() / 10;
-                    orangeHeardWidth = allSongs.getEntry(i).getPertmusicHeard() / 10;
+                    pinkHeardWidth = allSongs.getEntry(i).getPertsportsHeard()
+                        / 10;
+                    greenHeardWidth = allSongs.getEntry(i).getPertreadingHeard()
+                        / 10;
+                    blueHeardWidth = allSongs.getEntry(i).getPertartHeard()
+                        / 10;
+                    orangeHeardWidth = allSongs.getEntry(i).getPertmusicHeard()
+                        / 10;
+
+                    pinkLikeWidth = allSongs.getEntry(i).getPertsportsLike()
+                        / 10;
+                    greenLikeWidth = allSongs.getEntry(i).getPertreadingLike()
+                        / 10;
+                    blueLikeWidth = allSongs.getEntry(i).getPertartLike() / 10;
+                    orangeLikeWidth = allSongs.getEntry(i).getPertmusicLike()
+                        / 10;
+
+//                    pinkHeardWidth = allSongs.getEntry(i).getPertsportsHeard();
+//                    greenHeardWidth = allSongs.getEntry(i)
+//                        .getPertreadingHeard();
+//                    blueHeardWidth = allSongs.getEntry(i).getPertartHeard();
+//                    orangeHeardWidth = allSongs.getEntry(i).getPertmusicHeard();
+//
+//                    pinkLikeWidth = allSongs.getEntry(i).getPertsportsLike();
+//                    greenLikeWidth = allSongs.getEntry(i).getPertreadingLike();
+//                    blueLikeWidth = allSongs.getEntry(i).getPertartLike() / 10;
+//                    orangeLikeWidth = allSongs.getEntry(i).getPertmusicLike();
+                    break;
                 case 2:
                     pinkHeardWidth = allSongs.getEntry(i).getPertCsHeard() / 10;
-                    greenHeardWidth = allSongs.getEntry(i).getPertCmdaHeard() / 10;
-                    blueHeardWidth = allSongs.getEntry(i).getPertOtherEngHeard() / 10;
-                    orangeHeardWidth = allSongs.getEntry(i).getPertOtherHeard() / 10;
+                    greenHeardWidth = allSongs.getEntry(i).getPertCmdaHeard()
+                        / 10;
+                    blueHeardWidth = allSongs.getEntry(i).getPertOtherEngHeard()
+                        / 10;
+                    orangeHeardWidth = allSongs.getEntry(i).getPertOtherHeard()
+                        / 10;
+
+                    pinkLikeWidth = allSongs.getEntry(i).getPertCsLike() / 10;
+                    greenLikeWidth = allSongs.getEntry(i).getPertCmdaLike()
+                        / 10;
+                    blueLikeWidth = allSongs.getEntry(i).getPertOtherEngLike()
+                        / 10;
+                    orangeLikeWidth = allSongs.getEntry(i).getPertOtherLike()
+                        / 10;
+                    break;
                 case 3:
-                    pinkHeardWidth = allSongs.getEntry(i).getPertNeHeard() / 10;
-                    greenHeardWidth = allSongs.getEntry(i).getPertSeHeard() / 10;
-                    blueHeardWidth = allSongs.getEntry(i).getPertUsHeard() / 10;
-                    orangeHeardWidth = allSongs.getEntry(i).getPertOutsideUsHeard() / 10;
+                    pinkHeardWidth = allSongs.getEntry(i).getPertNeLike() / 10;
+                    greenHeardWidth = allSongs.getEntry(i).getPertSeLike() / 10;
+                    blueHeardWidth = allSongs.getEntry(i).getPertUsLike() / 10;
+                    orangeHeardWidth = allSongs.getEntry(i)
+                        .getPertOutsideUsLike() / 10;
+
+                    pinkLikeWidth = allSongs.getEntry(i).getPertNeLike() / 10;
+                    greenLikeWidth = allSongs.getEntry(i).getPertSeLike() / 10;
+                    blueLikeWidth = allSongs.getEntry(i).getPertUsLike() / 10;
+                    orangeLikeWidth = allSongs.getEntry(i)
+                        .getPertOutsideUsLike() / 10;
+                    break;
             }
-                
-            
+
             Shape pinkHeardBar = new Shape(blackBar.getX() - pinkHeardWidth,
                 blackBar.getY(), pinkHeardWidth, pertBarHeight, Color.PINK);
-            Shape greenHeardBar = new Shape(blackBar.getX() - greenHeardWidth, 
-                blackBar.getY() + pertBarHeight, greenHeardWidth, pertBarHeight, Color.GREEN);
-            Shape blueHeardBar = new Shape(blackBar.getX() - blueHeardWidth, 
-                blackBar.getY() + (pertBarHeight * 2), blueHeardWidth, pertBarHeight, Color.BLUE);
-            Shape orangeHeardBar = new Shape(blackBar.getX() - orangeHeardWidth, 
-                blackBar.getY() + (pertBarHeight * 3), orangeHeardWidth, pertBarHeight, Color.ORANGE);
-            
+            Shape greenHeardBar = new Shape(blackBar.getX() - greenHeardWidth,
+                blackBar.getY() + pertBarHeight, greenHeardWidth, pertBarHeight,
+                Color.GREEN);
+            Shape blueHeardBar = new Shape(blackBar.getX() - blueHeardWidth,
+                blackBar.getY() + (pertBarHeight * 2), blueHeardWidth,
+                pertBarHeight, Color.BLUE);
+            Shape orangeHeardBar = new Shape(blackBar.getX() - orangeHeardWidth,
+                blackBar.getY() + (pertBarHeight * 3), orangeHeardWidth,
+                pertBarHeight, Color.ORANGE);
+
+            Shape pinkLikeBar = new Shape(blackBar.getX() + blackBar.getWidth(),
+                blackBar.getY(), pinkLikeWidth, pertBarHeight, Color.PINK);
+            Shape greenLikeBar = new Shape(blackBar.getX() + blackBar
+                .getWidth(), blackBar.getY() + pertBarHeight, greenLikeWidth,
+                pertBarHeight, Color.GREEN);
+            Shape blueLikeBar = new Shape(blackBar.getX() + blackBar.getWidth(),
+                blackBar.getY() + (pertBarHeight * 2), blueLikeWidth,
+                pertBarHeight, Color.BLUE);
+            Shape orangeLikeBar = new Shape(blackBar.getX() + blackBar
+                .getWidth(), blackBar.getY() + (pertBarHeight * 3),
+                orangeLikeWidth, pertBarHeight, Color.ORANGE);
+
             if ((i % 3) == 0)
             {
                 titlex = 30;
@@ -148,13 +221,39 @@ public class GUI
             mainWindow.addShape(songTitleShape);
             mainWindow.addShape(songArtistShape);
             mainWindow.addShape(blackBar);
+
             mainWindow.addShape(pinkHeardBar);
             mainWindow.addShape(greenHeardBar);
             mainWindow.addShape(blueHeardBar);
             mainWindow.addShape(orangeHeardBar);
+
+            mainWindow.addShape(pinkLikeBar);
+            mainWindow.addShape(greenLikeBar);
+            mainWindow.addShape(blueLikeBar);
+            mainWindow.addShape(orangeLikeBar);
+        }
+        if (firstSongIndex - 9 < 1)
+        {
+            buttonPrevious.disable();
+        }
+        else
+        {
+
+            buttonPrevious.enable();
+        }
+
+        if (firstSongIndex + 9 > allSongs.getLength())
+        {
+            buttonNext.disable();
+        }
+        else
+        {
+
+            buttonNext.enable();
         }
 
         firstSongIndex += 9;
+
     }
 
 
@@ -164,19 +263,16 @@ public class GUI
         LList<Student> readingStudents = new LList<Student>();
         LList<Student> artStudents = new LList<Student>();
         LList<Student> musicStudents = new LList<Student>();
-        
+
         LList<Student> csStudents = new LList<Student>();
         LList<Student> cmdaStudents = new LList<Student>();
         LList<Student> otherEngStudents = new LList<Student>();
         LList<Student> otherStudents = new LList<Student>();
-        
-        
+
         LList<Student> neStudents = new LList<Student>();
         LList<Student> seStudents = new LList<Student>();
         LList<Student> usStudents = new LList<Student>();
         LList<Student> outsideUsStudents = new LList<Student>();
-        
-        
 
         for (int i = 1; i <= allStudents.getLength(); i++)
         {
@@ -197,16 +293,18 @@ public class GUI
             {
                 musicStudents.add(allStudents.getEntry(i));
             }
-            
+
             if (allStudents.getEntry(i).getMajor().equals("Math or CMDA"))
             {
                 cmdaStudents.add(allStudents.getEntry(i));
             }
-            else if (allStudents.getEntry(i).getMajor().equals("Computer Science"))
+            else if (allStudents.getEntry(i).getMajor().equals(
+                "Computer Science"))
             {
                 csStudents.add(allStudents.getEntry(i));
             }
-            else if (allStudents.getEntry(i).getMajor().equals("Other Engineering"))
+            else if (allStudents.getEntry(i).getMajor().equals(
+                "Other Engineering"))
             {
                 otherEngStudents.add(allStudents.getEntry(i));
             }
@@ -214,8 +312,7 @@ public class GUI
             {
                 otherStudents.add(allStudents.getEntry(i));
             }
-            
-            
+
             if (allStudents.getEntry(i).getRegion().equals("Northeast"))
             {
                 neStudents.add(allStudents.getEntry(i));
@@ -224,21 +321,22 @@ public class GUI
             {
                 seStudents.add(allStudents.getEntry(i));
             }
-            else if (allStudents.getEntry(i).getRegion().equals("United States (other than Southeast or Northwest)"))
+            else if (allStudents.getEntry(i).getRegion().equals(
+                "United States (other than Southeast or Northwest)"))
             {
                 usStudents.add(allStudents.getEntry(i));
             }
-            else if (allStudents.getEntry(i).getRegion().equals("Outside of United States"))
+            else if (allStudents.getEntry(i).getRegion().equals(
+                "Outside of United States"))
             {
                 outsideUsStudents.add(allStudents.getEntry(i));
             }
-            
-           
+
         }
 
         for (int i = 1; i <= allSongs.getLength(); i++)
         {
-            //get hobby percentages
+            // get hobby percentages
             int sportsHeardNum = 0;
             int sportsLikeNum = 0;
 
@@ -306,9 +404,9 @@ public class GUI
                     musicLikeNum++;
                 }
             }
-            
-            //get Major percentages
-            
+
+            // get Major percentages
+
             int csHeardNum = 0;
             int csLikeNum = 0;
 
@@ -331,8 +429,8 @@ public class GUI
 
             for (int x = 1; x <= cmdaStudents.getLength(); x++)
             {
-                if (cmdaStudents.getEntry(x).getSongsHeard().contains(
-                    allSongs.getEntry(i)))
+                if (cmdaStudents.getEntry(x).getSongsHeard().contains(allSongs
+                    .getEntry(i)))
                 {
                     cmdaHeardNum++;
                 }
@@ -348,13 +446,13 @@ public class GUI
 
             for (int x = 1; x <= otherEngStudents.getLength(); x++)
             {
-                if (otherEngStudents.getEntry(x).getSongsHeard().contains(allSongs
-                    .getEntry(i)))
+                if (otherEngStudents.getEntry(x).getSongsHeard().contains(
+                    allSongs.getEntry(i)))
                 {
                     otherEngHeardNum++;
                 }
-                if (otherEngStudents.getEntry(x).getSongsLike().contains(allSongs
-                    .getEntry(i)))
+                if (otherEngStudents.getEntry(x).getSongsLike().contains(
+                    allSongs.getEntry(i)))
                 {
                     otherEngLikeNum++;
                 }
@@ -376,11 +474,9 @@ public class GUI
                     otherLikeNum++;
                 }
             }
-            
-            
-            
-            //get Region percentages
-            
+
+            // get Region percentages
+
             int neHeardNum = 0;
             int neLikeNum = 0;
 
@@ -403,8 +499,8 @@ public class GUI
 
             for (int x = 1; x <= seStudents.getLength(); x++)
             {
-                if (seStudents.getEntry(x).getSongsHeard().contains(
-                    allSongs.getEntry(i)))
+                if (seStudents.getEntry(x).getSongsHeard().contains(allSongs
+                    .getEntry(i)))
                 {
                     seHeardNum++;
                 }
@@ -437,69 +533,174 @@ public class GUI
 
             for (int x = 1; x <= outsideUsStudents.getLength(); x++)
             {
-                if (outsideUsStudents.getEntry(x).getSongsHeard().contains(allSongs
-                    .getEntry(i)))
+                if (outsideUsStudents.getEntry(x).getSongsHeard().contains(
+                    allSongs.getEntry(i)))
                 {
                     outsideUsHeardNum++;
                 }
-                if (outsideUsStudents.getEntry(x).getSongsLike().contains(allSongs
-                    .getEntry(i)))
+                if (outsideUsStudents.getEntry(x).getSongsLike().contains(
+                    allSongs.getEntry(i)))
                 {
                     outsideUsLikeNum++;
                 }
             }
-            
-            
-          //calculation for Hobby percentages
-            allSongs.getEntry(i).setPertsportsHeard((sportsHeardNum * 100) / sportsStudents.getLength());
-            allSongs.getEntry(i).setPertsportsLike((sportsLikeNum * 100) / sportsStudents.getLength());
-            
-            allSongs.getEntry(i).setPertreadingHeard((readingHeardNum * 100) / readingStudents.getLength());
-            allSongs.getEntry(i).setPertreadingLike((readingLikeNum * 100) / readingStudents.getLength());
-            
-            
-            allSongs.getEntry(i).setPertartHeard((artHeardNum * 100) / artStudents.getLength());
-            allSongs.getEntry(i).setPertartLike((artLikeNum * 100) / artStudents.getLength());
-            
-            allSongs.getEntry(i).setPertmusicHeard((musicHeardNum * 100) / musicStudents.getLength());
-            allSongs.getEntry(i).setPertmusicLike((musicLikeNum * 100) / musicStudents.getLength());
-            
-            
-            //calculation for Major percentages
-            allSongs.getEntry(i).setPertCsHeard((csHeardNum * 100) / csStudents.getLength());
-            allSongs.getEntry(i).setPertCsLike((csLikeNum * 100) / csStudents.getLength());
-            
-            allSongs.getEntry(i).setPertCmdaHeard((cmdaHeardNum * 100) / cmdaStudents.getLength());
-            allSongs.getEntry(i).setPertCmdaLike((cmdaLikeNum * 100) / cmdaStudents.getLength());
-            
-            
-            allSongs.getEntry(i).setPertOtherEngHeard((otherEngHeardNum * 100) / otherEngStudents.getLength());
-            allSongs.getEntry(i).setPertOtherEngLike((otherEngLikeNum * 100) / otherEngStudents.getLength());
-            
-            allSongs.getEntry(i).setPertOtherHeard((otherHeardNum * 100) / otherStudents.getLength());
-            allSongs.getEntry(i).setPertOtherLike((otherLikeNum * 100) / otherStudents.getLength());
-            
-            
-          //calculation for Region percentages
-            allSongs.getEntry(i).setPertNeHeard((neHeardNum * 100) / neStudents.getLength());
-            allSongs.getEntry(i).setPertNeLike((neLikeNum * 100) / neStudents.getLength());
-            
-            allSongs.getEntry(i).setPertSeHeard((seHeardNum * 100) / seStudents.getLength());
-            allSongs.getEntry(i).setPertSeLike((seLikeNum * 100) / seStudents.getLength());
-            
-            
-            allSongs.getEntry(i).setPertUsHeard((usHeardNum * 100) / usStudents.getLength());
-            allSongs.getEntry(i).setPertUsLike((usLikeNum * 100) / usStudents.getLength());
-            
-            allSongs.getEntry(i).setPertOutsideUsHeard((outsideUsHeardNum * 100) / outsideUsStudents.getLength());
-            allSongs.getEntry(i).setPertOutsideUsLike((outsideUsLikeNum * 100) / outsideUsStudents.getLength());
+
+            // calculation for Hobby percentages
+            allSongs.getEntry(i).setPertsportsHeard((sportsHeardNum * 100)
+                / sportsStudents.getLength());
+            allSongs.getEntry(i).setPertsportsLike((sportsLikeNum * 100)
+                / sportsStudents.getLength());
+
+            allSongs.getEntry(i).setPertreadingHeard((readingHeardNum * 100)
+                / readingStudents.getLength());
+            allSongs.getEntry(i).setPertreadingLike((readingLikeNum * 100)
+                / readingStudents.getLength());
+
+            allSongs.getEntry(i).setPertartHeard((artHeardNum * 100)
+                / artStudents.getLength());
+            allSongs.getEntry(i).setPertartLike((artLikeNum * 100) / artStudents
+                .getLength());
+
+            allSongs.getEntry(i).setPertmusicHeard((musicHeardNum * 100)
+                / musicStudents.getLength());
+            allSongs.getEntry(i).setPertmusicLike((musicLikeNum * 100)
+                / musicStudents.getLength());
+
+            // calculation for Major percentages
+            allSongs.getEntry(i).setPertCsHeard((csHeardNum * 100) / csStudents
+                .getLength());
+            allSongs.getEntry(i).setPertCsLike((csLikeNum * 100) / csStudents
+                .getLength());
+
+            allSongs.getEntry(i).setPertCmdaHeard((cmdaHeardNum * 100)
+                / cmdaStudents.getLength());
+            allSongs.getEntry(i).setPertCmdaLike((cmdaLikeNum * 100)
+                / cmdaStudents.getLength());
+
+            allSongs.getEntry(i).setPertOtherEngHeard((otherEngHeardNum * 100)
+                / otherEngStudents.getLength());
+            allSongs.getEntry(i).setPertOtherEngLike((otherEngLikeNum * 100)
+                / otherEngStudents.getLength());
+
+            allSongs.getEntry(i).setPertOtherHeard((otherHeardNum * 100)
+                / otherStudents.getLength());
+            allSongs.getEntry(i).setPertOtherLike((otherLikeNum * 100)
+                / otherStudents.getLength());
+
+            // calculation for Region percentages
+            allSongs.getEntry(i).setPertNeHeard((neHeardNum * 100) / neStudents
+                .getLength());
+            allSongs.getEntry(i).setPertNeLike((neLikeNum * 100) / neStudents
+                .getLength());
+
+            allSongs.getEntry(i).setPertSeHeard((seHeardNum * 100) / seStudents
+                .getLength());
+            allSongs.getEntry(i).setPertSeLike((seLikeNum * 100) / seStudents
+                .getLength());
+
+            allSongs.getEntry(i).setPertUsHeard((usHeardNum * 100) / usStudents
+                .getLength());
+            allSongs.getEntry(i).setPertUsLike((usLikeNum * 100) / usStudents
+                .getLength());
+
+            allSongs.getEntry(i).setPertOutsideUsHeard((outsideUsHeardNum * 100)
+                / outsideUsStudents.getLength());
+            allSongs.getEntry(i).setPertOutsideUsLike((outsideUsLikeNum * 100)
+                / outsideUsStudents.getLength());
         }
+    }
+
+
+    public void clickedSortByGenre(Button button)
+    {
+        allSongs.insertSort(genreComparator);
+        mainWindow.removeAllShapes();
+        firstSongIndex = 1;
+        createNineCharts();
+
+    }
+
+
+    public void clickedSortByTitle(Button button)
+    {
+        allSongs.insertSort(titleComparator);
+        mainWindow.removeAllShapes();
+        firstSongIndex = 1;
+        createNineCharts();
+
+    }
+
+
+    public void clickedSortByArtist(Button button)
+    {
+        allSongs.insertSort(artistComparator);
+        mainWindow.removeAllShapes();
+        firstSongIndex = 1;
+        createNineCharts();
+
+    }
+
+
+    public void clickedSortByYear(Button button)
+    {
+        allSongs.insertSort(yearComparator);
+        mainWindow.removeAllShapes();
+        firstSongIndex = 1;
+        createNineCharts();
+
     }
 
 
     public void clickedExit(Button button)
     {
         System.exit(0);
+    }
+
+
+    public void clickedNext(Button button)
+    {
+        mainWindow.removeAllShapes();
+
+        createNineCharts();
+    }
+
+
+    public void clickedPrevious(Button button)
+    {
+
+        mainWindow.removeAllShapes();
+
+        firstSongIndex -= 18;
+
+        createNineCharts();
+
+    }
+
+
+    public void clickedMajor(Button button)
+    {
+        representNum = 2;
+        mainWindow.removeAllShapes();
+        firstSongIndex = 1;
+        createNineCharts();
+    }
+
+
+    public void clickedHobbies(Button button)
+    {
+        representNum = 1;
+        mainWindow.removeAllShapes();
+        firstSongIndex = 1;
+        createNineCharts();
+    }
+
+
+    public void clickedRegion(Button button)
+    {
+        representNum = 3;
+        mainWindow.removeAllShapes();
+        firstSongIndex = 1;
+        createNineCharts();
     }
 
 }
