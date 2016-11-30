@@ -1,6 +1,7 @@
 package pj5;
 
 /**
+ * This is a test class for Song
  * @author usmana
  * @version 11/15/2016
  */
@@ -10,7 +11,7 @@ public class SongTest extends student.TestCase
 
 
     /**
-     *
+     * Creates a Song Object to be tested
      */
     public void setUp()
     {
@@ -19,7 +20,7 @@ public class SongTest extends student.TestCase
 
 
     /**
-     * 
+     * tests to see if the correct Artist is returned 
      */
     public void testgetArtist()
     {
@@ -28,7 +29,7 @@ public class SongTest extends student.TestCase
 
 
     /**
-     * 
+     * tests to see if the correct Genre is returned 
      */
     public void testgetGenre()
     {
@@ -37,7 +38,7 @@ public class SongTest extends student.TestCase
 
 
     /**
-     * 
+     * tests to see if the correct Title is returned 
      */
     public void testgetTitle()
     {
@@ -46,7 +47,7 @@ public class SongTest extends student.TestCase
 
 
     /**
-     * 
+     * tests to see if the correct Year is returned 
      */
     public void testgetYear()
     {
@@ -55,7 +56,7 @@ public class SongTest extends student.TestCase
 
 
     /**
-     * 
+     * tests to see if the correct String representation of Song is returned 
      */
     public void testtoString()
     {
@@ -65,3 +66,4 @@ public class SongTest extends student.TestCase
     }
 
 }
+
