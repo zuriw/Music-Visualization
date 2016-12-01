@@ -2,7 +2,7 @@ package pj5;
 
 /**
  * This is a test class for Song
- * @author usmana
+ * @author usmana, jchu247
  * @version 11/15/2016
  */
 public class SongTest extends student.TestCase
