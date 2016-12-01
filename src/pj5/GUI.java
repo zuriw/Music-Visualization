@@ -8,6 +8,12 @@ import CS2114.TextShape;
 import CS2114.Window;
 import CS2114.WindowSide;
 
+/**
+ * This class executes the front end GUI of the program
+ * 
+ * @author zuriw, jchu247
+ * @version 11/30/2016
+ */
 public class GUI
 {
     private Button           buttonExit;
@@ -37,8 +43,27 @@ public class GUI
     private CompareArtist    artistComparator;
     private CompareTitle     titleComparator;
     private CompareYear      yearComparator;
+    
+    private Shape legend1;
+    private Shape legend2;
+    private Shape legend3;
+    private Shape legend4; 
+    private Shape blackBar;
+    private TextShape options1;
+    private TextShape options2; 
+    private TextShape options3;
+    private TextShape options4;
+    private TextShape TitleOfSong;
+    private TextShape heard;
+    private TextShape likes;
+    private TextShape isLegend;
 
-
+    /**
+     * This is the GUI constructor that adds all the buttons and 
+     * initially sets up the gui
+     * @param songsIn the list of songs
+     * @param studentsIn the list of students
+     */
     public GUI(LList<Song> songsIn, LList<Student> studentsIn)
     {
         mainWindow = new Window("Project 5");
@@ -90,10 +115,12 @@ public class GUI
         getPercentage();
         firstSongIndex = 1;
         createNineCharts();
-
     }
 
-
+    /**
+     * The createNineCharts method creates the nine charts 
+     * based on hobby, major, or region. 
+     */
     public void createNineCharts()
     {
         int titlex = 30;
@@ -115,12 +142,12 @@ public class GUI
             int pinkHeardWidth = 0;
             int greenHeardWidth = 0;
             int blueHeardWidth = 0;
-            int orangeHeardWidth = 0;
+            int REDHeardWidth = 0;
 
             int pinkLikeWidth = 0;
             int greenLikeWidth = 0;
             int blueLikeWidth = 0;
-            int orangeLikeWidth = 0;
+            int REDLikeWidth = 0;
             switch (representNum)
             {
                 case 1:
@@ -130,7 +157,7 @@ public class GUI
                         / 10;
                     blueHeardWidth = allSongs.getEntry(i).getPertartHeard()
                         / 10;
-                    orangeHeardWidth = allSongs.getEntry(i).getPertmusicHeard()
+                    REDHeardWidth = allSongs.getEntry(i).getPertmusicHeard()
                         / 10;
 
                     pinkLikeWidth = allSongs.getEntry(i).getPertsportsLike()
@@ -138,19 +165,19 @@ public class GUI
                     greenLikeWidth = allSongs.getEntry(i).getPertreadingLike()
                         / 10;
                     blueLikeWidth = allSongs.getEntry(i).getPertartLike() / 10;
-                    orangeLikeWidth = allSongs.getEntry(i).getPertmusicLike()
+                    REDLikeWidth = allSongs.getEntry(i).getPertmusicLike()
                         / 10;
 
 //                    pinkHeardWidth = allSongs.getEntry(i).getPertsportsHeard();
 //                    greenHeardWidth = allSongs.getEntry(i)
 //                        .getPertreadingHeard();
 //                    blueHeardWidth = allSongs.getEntry(i).getPertartHeard();
-//                    orangeHeardWidth = allSongs.getEntry(i).getPertmusicHeard();
+//                    REDHeardWidth = allSongs.getEntry(i).getPertmusicHeard();
 //
 //                    pinkLikeWidth = allSongs.getEntry(i).getPertsportsLike();
 //                    greenLikeWidth = allSongs.getEntry(i).getPertreadingLike();
 //                    blueLikeWidth = allSongs.getEntry(i).getPertartLike() / 10;
-//                    orangeLikeWidth = allSongs.getEntry(i).getPertmusicLike();
+//                    REDLikeWidth = allSongs.getEntry(i).getPertmusicLike();
                     break;
                 case 2:
                     pinkHeardWidth = allSongs.getEntry(i).getPertCsHeard() / 10;
@@ -158,7 +185,7 @@ public class GUI
                         / 10;
                     blueHeardWidth = allSongs.getEntry(i).getPertOtherEngHeard()
                         / 10;
-                    orangeHeardWidth = allSongs.getEntry(i).getPertOtherHeard()
+                    REDHeardWidth = allSongs.getEntry(i).getPertOtherHeard()
                         / 10;
 
                     pinkLikeWidth = allSongs.getEntry(i).getPertCsLike() / 10;
@@ -166,20 +193,20 @@ public class GUI
                         / 10;
                     blueLikeWidth = allSongs.getEntry(i).getPertOtherEngLike()
                         / 10;
-                    orangeLikeWidth = allSongs.getEntry(i).getPertOtherLike()
+                    REDLikeWidth = allSongs.getEntry(i).getPertOtherLike()
                         / 10;
                     break;
                 case 3:
                     pinkHeardWidth = allSongs.getEntry(i).getPertNeLike() / 10;
                     greenHeardWidth = allSongs.getEntry(i).getPertSeLike() / 10;
                     blueHeardWidth = allSongs.getEntry(i).getPertUsLike() / 10;
-                    orangeHeardWidth = allSongs.getEntry(i)
+                    REDHeardWidth = allSongs.getEntry(i)
                         .getPertOutsideUsLike() / 10;
 
                     pinkLikeWidth = allSongs.getEntry(i).getPertNeLike() / 10;
                     greenLikeWidth = allSongs.getEntry(i).getPertSeLike() / 10;
                     blueLikeWidth = allSongs.getEntry(i).getPertUsLike() / 10;
-                    orangeLikeWidth = allSongs.getEntry(i)
+                    REDLikeWidth = allSongs.getEntry(i)
                         .getPertOutsideUsLike() / 10;
                     break;
             }
@@ -192,9 +219,9 @@ public class GUI
             Shape blueHeardBar = new Shape(blackBar.getX() - blueHeardWidth,
                 blackBar.getY() + (pertBarHeight * 2), blueHeardWidth,
                 pertBarHeight, Color.BLUE);
-            Shape orangeHeardBar = new Shape(blackBar.getX() - orangeHeardWidth,
-                blackBar.getY() + (pertBarHeight * 3), orangeHeardWidth,
-                pertBarHeight, Color.ORANGE);
+            Shape REDHeardBar = new Shape(blackBar.getX() - REDHeardWidth,
+                blackBar.getY() + (pertBarHeight * 3), REDHeardWidth,
+                pertBarHeight, Color.RED);
 
             Shape pinkLikeBar = new Shape(blackBar.getX() + blackBar.getWidth(),
                 blackBar.getY(), pinkLikeWidth, pertBarHeight, Color.PINK);
@@ -204,9 +231,9 @@ public class GUI
             Shape blueLikeBar = new Shape(blackBar.getX() + blackBar.getWidth(),
                 blackBar.getY() + (pertBarHeight * 2), blueLikeWidth,
                 pertBarHeight, Color.BLUE);
-            Shape orangeLikeBar = new Shape(blackBar.getX() + blackBar
+            Shape REDLikeBar = new Shape(blackBar.getX() + blackBar
                 .getWidth(), blackBar.getY() + (pertBarHeight * 3),
-                orangeLikeWidth, pertBarHeight, Color.ORANGE);
+                REDLikeWidth, pertBarHeight, Color.RED);
 
             if ((i % 3) == 0)
             {
@@ -225,12 +252,12 @@ public class GUI
             mainWindow.addShape(pinkHeardBar);
             mainWindow.addShape(greenHeardBar);
             mainWindow.addShape(blueHeardBar);
-            mainWindow.addShape(orangeHeardBar);
+            mainWindow.addShape(REDHeardBar);
 
             mainWindow.addShape(pinkLikeBar);
             mainWindow.addShape(greenLikeBar);
             mainWindow.addShape(blueLikeBar);
-            mainWindow.addShape(orangeLikeBar);
+            mainWindow.addShape(REDLikeBar);
         }
         if (firstSongIndex - 9 < 1)
         {
@@ -254,9 +281,57 @@ public class GUI
 
         firstSongIndex += 9;
 
+        legend1 = new Shape(600, 150, 5, 185, Color.BLACK);
+        legend2 = new Shape(720, 150, 5, 185, Color.BLACK);
+        legend3 = new Shape(600, 150, 120, 5, Color.BLACK);
+        legend4 = new Shape(600, 330, 120, 5, Color.BLACK);
+        blackBar = new Shape(665, 280, 10, 40, Color.BLACK);
+        TitleOfSong = new TextShape(655, 260, "Song", Color.BLACK);
+        heard = new TextShape(610, 290, "Heard", Color.BLACK);
+        likes = new TextShape(680, 290, "Likes", Color.BLACK);
+        mainWindow.addShape(legend1);
+        mainWindow.addShape(legend2);
+        mainWindow.addShape(legend3);
+        mainWindow.addShape(legend4);
+        mainWindow.addShape(blackBar);
+        mainWindow.addShape(TitleOfSong);
+        mainWindow.addShape(heard);
+        mainWindow.addShape(likes);
+        if (representNum == 1)
+        {
+            isLegend = new TextShape(610, 160, "Hobby Legend", Color.BLACK);
+            options1 = new TextShape(610, 180, "Sports", Color.PINK);
+            options2 = new TextShape(610, 200, "Reading", Color.GREEN);
+            options3 = new TextShape(610, 220, "Art", Color.BLUE);
+            options4 = new TextShape(610, 240, "Music", Color.RED);
+        }
+        else if (representNum == 2)
+        {
+            isLegend = new TextShape(610, 160, "Major Legend", Color.BLACK);
+            options1 = new TextShape(610, 180, "Comp Sci", Color.PINK);
+            options2 = new TextShape(610, 200, "MATH/CDMA", Color.GREEN);
+            options3 = new TextShape(610, 220, "Other Eng", Color.BLUE);
+            options4 = new TextShape(610, 240, "Other", Color.RED);
+        }
+        else if (representNum == 3)
+        {
+            isLegend = new TextShape(610, 160, "Region Legend", Color.BLACK);
+            options1 = new TextShape(610, 180, "NE US", Color.PINK);
+            options2 = new TextShape(610, 200, "SE US", Color.GREEN);
+            options3 = new TextShape(610, 220, "Rest of US", Color.BLUE);
+            options4 = new TextShape(610, 240, "Outside the US", Color.RED);
+        }
+        mainWindow.addShape(isLegend);
+        mainWindow.addShape(options1);
+        mainWindow.addShape(options2);
+        mainWindow.addShape(options3);
+        mainWindow.addShape(options4);
     }
 
-
+    /**
+     * The getPercentage method calculates the percentages 
+     * for each chart. 
+     */
     public void getPercentage()
     {
         LList<Student> sportsStudents = new LList<Student>();
@@ -610,7 +685,11 @@ public class GUI
         }
     }
 
-
+    /**
+     * The clickedSortByGenre method is executed when the Sort by Genre 
+     * button is clicked. It controls what that button does. 
+     * @param button Sort by Genre button
+     */
     public void clickedSortByGenre(Button button)
     {
         allSongs.insertSort(genreComparator);
@@ -620,7 +699,11 @@ public class GUI
 
     }
 
-
+    /**
+     * The clickedSortByTitle method is executed when the Sort by Title
+     * button is clicked. It controls what that button does. 
+     * @param button Sort by Title button
+     */
     public void clickedSortByTitle(Button button)
     {
         allSongs.insertSort(titleComparator);
@@ -630,7 +713,11 @@ public class GUI
 
     }
 
-
+    /**
+     * The clickedSortByArtist method is executed when the Sort by artist 
+     * button is clicked. It controls what that button does. 
+     * @param button Sort by Artist button
+     */
     public void clickedSortByArtist(Button button)
     {
         allSongs.insertSort(artistComparator);
@@ -640,7 +727,11 @@ public class GUI
 
     }
 
-
+    /**
+     * The clickedSortByYear method is executed when the Sort by Year
+     * button is clicked. It controls what that button does. 
+     * @param button Sort by Year button
+     */
     public void clickedSortByYear(Button button)
     {
         allSongs.insertSort(yearComparator);
@@ -650,13 +741,21 @@ public class GUI
 
     }
 
-
+    /**
+     * The clickedExit method is executed when the Quit
+     * button is clicked. It controls what that button does. 
+     * @param button Quit button
+     */
     public void clickedExit(Button button)
     {
         System.exit(0);
     }
 
-
+    /**
+     * The clickedNext method is executed when the Next
+     * button is clicked. It controls what that button does. 
+     * @param button Next button
+     */
     public void clickedNext(Button button)
     {
         mainWindow.removeAllShapes();
@@ -664,7 +763,11 @@ public class GUI
         createNineCharts();
     }
 
-
+    /**
+     * The clickedPrevious method is executed when the Previous
+     * button is clicked. It controls what that button does. 
+     * @param button Previous button
+     */
     public void clickedPrevious(Button button)
     {
 
@@ -676,7 +779,11 @@ public class GUI
 
     }
 
-
+    /**
+     * The clickedMajor method is executed when Represent Major
+     * button is clicked. It controls what that button does. 
+     * @param button Represent Major button
+     */
     public void clickedMajor(Button button)
     {
         representNum = 2;
@@ -685,7 +792,11 @@ public class GUI
         createNineCharts();
     }
 
-
+    /**
+     * The clickedHobbies method is executed when Represent Hobby
+     * button is clicked. It controls what that button does. 
+     * @param button Represent Hobby button
+     */
     public void clickedHobbies(Button button)
     {
         representNum = 1;
@@ -694,7 +805,11 @@ public class GUI
         createNineCharts();
     }
 
-
+    /**
+     * The clickedRegion is executed when Represent Region
+     * button is clicked. It controls what that button does. 
+     * @param button Represent Region button
+     */
     public void clickedRegion(Button button)
     {
         representNum = 3;
@@ -702,5 +817,6 @@ public class GUI
         firstSongIndex = 1;
         createNineCharts();
     }
+    
 
 }

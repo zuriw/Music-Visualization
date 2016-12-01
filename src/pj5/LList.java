@@ -85,14 +85,7 @@ public class LList<T>
         {
             if ((obj.equals(current.next.data)))
             {
-                if (current.next.next != null)
-                {
-                    current.setNextNode(current.next.next);
-                }
-                else
-                {
-                    current.next.setNextNode(null);
-                }
+                current.setNextNode(current.next.next);
                 numberOfEntries--;
                 return true;
             }
@@ -117,8 +110,6 @@ public class LList<T>
 
         if ((givenPosition >= 1) && (givenPosition <= numberOfEntries))
         {
-            assert !isEmpty();
-
             if (givenPosition == 1) // Case 1: Remove first entry
             {
                 result = firstNode.getData(); // Save entry to be removed
@@ -155,7 +146,6 @@ public class LList<T>
     {
         if ((givenPosition >= 1) && (givenPosition <= numberOfEntries))
         {
-            assert !isEmpty();
             return getNodeAt(givenPosition).getData();
         }
         else
@@ -180,7 +170,7 @@ public class LList<T>
 
         int index = 0;
         Node currentNode = firstNode;
-        while ((index < numberOfEntries) && (currentNode != null))
+        while (index < numberOfEntries)
         {
             result[index] = currentNode.getData();
             currentNode = currentNode.getNextNode();
@@ -268,12 +258,10 @@ public class LList<T>
 
         if (numberOfEntries == 0) // Or getLength() == 0
         {
-            assert firstNode == null;
             result = true;
         }
         else
         {
-            assert firstNode != null;
             result = false;
         } // end if
 
@@ -302,8 +290,6 @@ public class LList<T>
      */
     private Node getNodeAt(int givenPosition)
     {
-        assert !isEmpty() && (1 <= givenPosition)
-            && (givenPosition <= numberOfEntries);
         Node currentNode = firstNode;
 
         // Traverse the chain to locate the desired node
@@ -313,7 +299,6 @@ public class LList<T>
             currentNode = currentNode.getNextNode();
         }
 
-        assert currentNode != null;
 
         return currentNode;
     } // end getNodeAt
@@ -402,23 +387,6 @@ public class LList<T>
             data = dataPortion;
             next = null;
         } // end constructor
-
-
-        /**
-         * Constructor for Node class with a data Item and a Link to the next
-         * Node
-         * 
-         * @param dataPortion
-         *            the data contained in the Node
-         * @param nextNode
-         *            Link to the next Node
-         */
-        private Node(T dataPortion, Node nextNode)
-        {
-            data = dataPortion;
-            next = nextNode;
-        } // end constructor
-
 
         /**
          * gets the data in the Node

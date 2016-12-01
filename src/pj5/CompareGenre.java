@@ -13,10 +13,12 @@ public class CompareGenre implements Comparator<Song>
 {
 
     /**
-     * Compares two Song Objects by the Genre and returns less than /equal to  / greater than
+     * Compares two Song Objects by the Genre and returns 
+     * less than /equal to  / greater than
      * @param song1 Song Object 1 
      * @param song2 the other Song Object being compared to
-     * @return int negative (less) 0 (equal to) positive (greater than)  Ignores String case
+     * @return int negative (less) 0 (equal to) positive 
+     * (greater than)  Ignores String case
      */
     @Override
     public int compare(Song song1, Song song2)

@@ -4,7 +4,7 @@ import java.util.Comparator;
 import student.TestCase;
 
 /**
- * @author zuriw,usmana
+ * @author zuriw,usmana, jchu247
  * @version 2016.11.27
  */
 public class LListTest extends TestCase
@@ -176,6 +176,14 @@ public class LListTest extends TestCase
         {
             assertTrue(e instanceof IndexOutOfBoundsException);
         }
+        try
+        {
+            str.remove(-1);
+        }
+        catch (Exception e)
+        {
+            assertTrue(e instanceof IndexOutOfBoundsException);
+        }
     }
 
 
@@ -189,6 +197,7 @@ public class LListTest extends TestCase
         str.add("c");
         assertEquals("a", str.remove(1));
         assertEquals(2, str.getLength());
+        assertEquals("c", str.remove(2));
     }
 
 
@@ -317,6 +326,21 @@ public class LListTest extends TestCase
         str.add("c");
         str.insertSort(strCompare);
         assertEquals("{a, b, c}", str.toString());
+    }
+    
+    /**
+     * tests the toArray method 
+     */
+    public void testToArray()
+    {
+        str.toArray();
+        str.add("a");
+        str.add("b");
+        str.add("c");
+        Object[] temp = str.toArray();
+        assertEquals("a", temp[0]);
+        assertEquals("b", temp[1]);
+        assertEquals("c", temp[2]);
     }
 
 

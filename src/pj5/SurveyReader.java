@@ -66,7 +66,7 @@ public class SurveyReader
                         {
                             if (phrases[index].equals("Yes"))
                             {
-                                student.addLike(songsIn.getEntry(songIndex)); // song
+                                student.addLike(songsIn.getEntry(songIndex)); 
                                 // 1
                             }
                             songIndex++;
@@ -75,7 +75,7 @@ public class SurveyReader
                         {
                             if (phrases[index].equals("Yes"))
                             {
-                                student.addHeard(songsIn.getEntry(songIndex)); // song
+                                student.addHeard(songsIn.getEntry(songIndex)); 
                             }
 
                         }

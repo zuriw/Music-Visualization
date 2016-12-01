@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 /**
  * This class executes the program based on the Input provided
  * 
- * @author zuriw
+ * @author zuriw, jchu247
  * @version 11/30/2016
  */
 public class Input
@@ -21,8 +21,8 @@ public class Input
 
         try
         {
-            surveyReader = new SurveyReader("MusicSurveyData.csv");
-            musicReader = new MusicReader("SongList.csv");
+            surveyReader = new SurveyReader("MusicSurveyData2016F.csv");
+            musicReader = new MusicReader("SongList2016F.csv");
 
         }
         catch (FileNotFoundException e)

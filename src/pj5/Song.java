@@ -4,7 +4,7 @@ package pj5;
  * This class creates a Song object which contains the Title Artist Year and
  * Genre compiled by their Hobbies Majors and
  * 
- * @author zuriw,usmana
+ * @author zuriw, usmana, jchu247
  * @version 11/30/2016
  */
 public class Song
@@ -46,14 +46,12 @@ public class Song
 
 
     /**
-     * @param Title
-     *            of the Song
-     * @param Year
-     *            of the Song
-     * @param Genre
-     *            of the Song
-     * @param Artist
-     *            of the Song
+     * song constructor
+     * 
+     * @param title of the Song
+     * @param year of the Song
+     * @param genre of the Song
+     * @param artist of the Song
      */
     public Song(String title, String artist, int year, String genre)
     {

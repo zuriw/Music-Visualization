@@ -32,7 +32,7 @@ public class MusicReaderTest extends TestCase
         {
             System.out.println(songs.getEntry(i).toString());
         }*/
-        assertEquals(5,songs.getLength());
+        assertEquals(5, songs.getLength());
     }
 }
 
