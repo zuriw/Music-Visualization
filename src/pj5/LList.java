@@ -9,7 +9,10 @@ import java.util.Comparator;
  * @author Frank M. Carrano
  * @author Timothy M. Henry
  * @version 4.0
+ * @param <T>
+ *            type of Objects being added to the LinkedList
  */
+
 public class LList<T>
 {
     private Node firstNode;      // Reference to first node of chain
@@ -45,7 +48,9 @@ public class LList<T>
         Node newNode = new Node(newEntry);
 
         if (isEmpty())
+        {
             firstNode = newNode;
+        }
         else // Add to end of non-empty list
         {
             Node lastNode = getNodeAt(numberOfEntries);
@@ -132,8 +137,10 @@ public class LList<T>
             return result; // Return removed entry
         }
         else
+        {
             throw new IndexOutOfBoundsException(
                 "Illegal position given to remove operation.");
+        }
     } // end remove
 
 
@@ -152,8 +159,10 @@ public class LList<T>
             return getNodeAt(givenPosition).getData();
         }
         else
+        {
             throw new IndexOutOfBoundsException(
                 "Illegal position given to getEntry operation.");
+        }
     } // end getEntry
 
 
@@ -198,9 +207,13 @@ public class LList<T>
         while (!found && (currentNode != null))
         {
             if (anEntry.equals(currentNode.getData()))
+            {
                 found = true;
+            }
             else
+            {
                 currentNode = currentNode.getNextNode();
+            }
         } // end while
 
         return found;
@@ -296,7 +309,9 @@ public class LList<T>
         // Traverse the chain to locate the desired node
         // (skipped if givenPosition is 1)
         for (int counter = 1; counter < givenPosition; counter++)
+        {
             currentNode = currentNode.getNextNode();
+        }
 
         assert currentNode != null;
 
@@ -439,3 +454,4 @@ public class LList<T>
         } // end setNextNode
     } // end Node
 } // end LList
+
