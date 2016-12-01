@@ -1,6 +1,3 @@
-/**
- * 
- */
 package pj5;
 
 import java.io.File;
@@ -8,7 +5,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- * @author zuriw
+ * @author zuriw,usmana
+ * @version 11/30/2016
  */
 public class SurveyReader
 {
@@ -16,6 +14,14 @@ public class SurveyReader
     private LList<Student> students;
 
 
+    /**
+     * This constrcuts a SurveyReader object and an empty LinkedList<Student>
+     * 
+     * @param fileNameIn
+     *            the name of the file that is being read as a String
+     * @throws FileNotFoundException
+     *             if the file is not found in the source foulder
+     */
     public SurveyReader(String fileNameIn) throws FileNotFoundException
     {
         File file = new File(fileNameIn);
@@ -24,6 +30,13 @@ public class SurveyReader
     }
 
 
+    /**
+     * Gets a list of Students from the csv File
+     * 
+     * @return a LinkedList<Student> from the csv File
+     * @param songsIn
+     *            LinkedList<Song> from MusicReader
+     */
     public LList<Student> getStudents(LList<Song> songsIn)
     {
         scanner.nextLine();
@@ -35,8 +48,6 @@ public class SurveyReader
             if (phrases.length > 4)
             {
 
-                //String ID = phrases[0];
-                //String date = phrases[1];
                 String major = phrases[2];
                 String region = phrases[3];
                 String hobby = phrases[4];
