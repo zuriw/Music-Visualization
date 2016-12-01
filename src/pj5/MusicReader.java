@@ -5,10 +5,10 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- * This class creates a MusicReader object which takes in a csv file as a String Name
- * and creates Song Objects
+ * This class creates a MusicReader object which takes in a csv file as a String
+ * Name and creates Song Objects
  * 
- * @author zuri
+ * @author zuriw,usmana
  * @version 11/30/2016
  */
 public class MusicReader
@@ -20,8 +20,11 @@ public class MusicReader
 
     /**
      * This constrcuts a MusicReader object and an empty LinkedList<Song>
-     * @param fileNameIn the name of the file that is being read as a String
-     * @throws FileNotFoundException if the file is not found in the source foulder
+     * 
+     * @param fileNameIn
+     *            the name of the file that is being read as a String
+     * @throws FileNotFoundException
+     *             if the file is not found in the source foulder
      */
     public MusicReader(String fileNameIn) throws FileNotFoundException
     {
@@ -33,7 +36,8 @@ public class MusicReader
 
     /**
      * Gets a list of Songs from the csv File
-     * @return a LinkedList<Song> from the csv File 
+     * 
+     * @return a LinkedList<Song> from the csv File
      */
     public LList<Song> getSongs()
     {
